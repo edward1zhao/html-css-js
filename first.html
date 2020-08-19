@@ -1,0 +1,54 @@
+<html>
+<head>
+</head>
+<body>
+	<script>
+	function random_color(){
+		return 'rgb(' + Math.random()*255 + ',' + Math.random()*255 + ',' + Math.random()*255 + ')';
+	}
+
+	function bgChange(e) {
+	   const rndCol = random_color();
+	   e.target.style.backgroundColor = rndCol;
+	   if(e.target.firstChild !== null)
+	   	e.target.firstChild.setAttribute("fill", random_color());
+	   e.stopPropagation();
+	}
+
+	let div_row = document.createElement("div");
+	div_row.style.display = "flex";
+	div_row.style.width = "600px";
+	let div_col = document.createElement("div");
+	let div_real_row = div_row.cloneNode();
+	div_col.style.width = '100px';
+	div_col.style.height = "100px";
+	let svg_eli = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+	svg_eli.setAttribute("width", "100%");
+	svg_eli.setAttribute("height", "100%");
+	let star = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+	star.setAttribute("points", "50,5 20,100 95,35 5,35 80,100");
+	star.setAttribute("fill", "lime");
+	star.style.stroke = "purple";
+	star.style.storkeWidth = "2";
+	star.style.fillRule = "evenodd";
+	for(let i = 0; i < 36; i++){
+		div_real_col = div_col.cloneNode();
+		div_real_col.style.backgroundColor = random_color();
+		star_real = star.cloneNode();
+		star_real.setAttribute("fill", random_color());
+		svg_real_eli = svg_eli.cloneNode();
+		svg_real_eli.append(star_real);
+		div_real_col.append(svg_real_eli);
+		div_real_row.append(div_real_col);
+		if((i + 1) % 6 === 0 && i !== 0){
+			document.body.append(div_real_row);
+			div_real_row = div_row.cloneNode();
+		}
+	}
+	const divs = document.querySelectorAll('div');
+	for (let i = 0; i < divs.length; i++) {
+	  divs[i].onclick = bgChange;
+	}
+	</script>
+</body>
+</html>
