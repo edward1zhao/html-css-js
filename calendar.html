@@ -1,0 +1,311 @@
+<html>
+	<head>
+  		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  		<script>
+  			$(document).ready(function(){
+          let global_month = 0;
+          let global_day = 0;
+          let global_year = 0;
+          $("#today").click(goToToday);
+          $("#previous").click(function(){
+            let month = parseInt($("#select_month")[0].value)
+            if(month > 1)
+              $("#select_month").val(month - 1);
+            else{
+              $("#select_month").val(12);
+              $("#select_year").val(parseInt($("#select_year")[0].value) - 1);
+            }
+            setDate(parseInt($("#select_month").val()), 1, parseInt($("#select_year").val()));
+          });
+          $("#next").click(function(){
+            let month = parseInt($("#select_month")[0].value)
+            if(month < 12)
+              $("#select_month").val(month + 1);
+            else{
+              $("#select_month").val(1);
+              $("#select_year").val(parseInt($("#select_year")[0].value) + 1);
+            }
+            setDate(parseInt($("#select_month").val()), 1, parseInt($("#select_year").val()));
+          });
+  				function isLeapYear(year){
+  					if(year % 4 === 0)
+  						return true;
+  					else
+  						return false;
+  				}
+  				function getMonthNumber(month){
+  					switch(month){
+  						case "jan": return 1;
+  						case "feb": return 2;
+  						case "mar": return 3;
+  						case "apr": return 4;
+  						case "may": return 5;
+  						case "jun": return 6;
+  						case "jul": return 7;
+  						case "aug": return 8;
+  						case "sep": return 9;
+  						case "oct": return 10;
+  						case "nov": return 11;
+  						case "dec": return 12;
+  					}
+  				}
+  				function getMonthName(month){
+  					switch(month){
+  						case 1: return "January";
+  						case 2: return "February";
+  						case 3: return "March";
+  						case 4: return "April";
+  						case 5: return "May";
+  						case 6: return "June";
+  						case 7: return "July";
+  						case 8: return "August";
+  						case 9: return "September";
+  						case 10: return "October";
+  						case 11: return "November";
+  						case 12: return "December";
+  					}
+  				}
+  				function getMonthSize(month, year){
+  					switch(month){
+  						case 1: return 31;
+  						case 2: return (isLeapYear(year))? 29 : 28;
+  						case 3: return 31;
+  						case 4: return 30;
+  						case 5: return 31;
+  						case 6: return 30;
+  						case 7: return 31;
+  						case 8: return 31;
+  						case 9: return 30;
+  						case 10: return 31;
+  						case 11: return 30;
+  						case 12: return 31;
+  						case 0: return 31;
+  					}
+  				}
+  				function getDay(day){
+  					switch(day){
+  						case 1: return "Sunday";
+  						case 2: return "Monday";
+  						case 3: return "Tuesday";
+  						case 4: return "Wednesday";
+  						case 5: return "Thursday";
+  						case 6: return "Friday";
+  						case 7: return "Saturday";
+  					}
+
+  				}
+  				function countDays(start_year, start_month, start_day, end_year, end_month, end_day){
+  					let total_day = 0;
+  					for(let i = start_year + 1; i < end_year; i++){
+  						total_day += (isLeapYear(i))? 366 : 365;
+  					}
+  					if(start_year === end_year){
+              if(start_month == end_month)
+  						  total_day += end_day - start_day;
+              else{
+                total_day -= start_day;
+                for(let i = start_month; i < end_month; i++){
+                  total_day += getMonthSize(i, start_year);
+                }
+                total_day += end_day
+              }
+  					}
+  					else{
+  						for(let i = start_month + 1; i <= 12; i++){
+  							total_day += getMonthSize(i, start_year);
+  						}
+  						for(let i = 1; i < end_month; i++){
+  							total_day += getMonthSize(i, end_year);
+  						}
+  						total_day += end_day;
+  						total_day += getMonthSize(start_month, start_year) - start_day;
+  					}
+  					return total_day;
+  				}
+  				function isBig(month, day, year){
+  					if(year > 2020)
+  						return true;
+  					else if(year === 2020){
+  						if(month > 8)
+  							return true;
+  						else if(month === 8){
+  							if(day > 22)
+  								return true;
+  							else
+  								return false;
+  						}
+  						else
+  							return false;
+  					}
+  					else
+  						return false;
+  				}
+  				function calculateDetail(month, day, year){
+  					let total_day = 0;
+  					let is_big = isBig(month, day, year);
+  					total_day = (is_big)? countDays(2020, 8, 22, year, month, day) : countDays(year, month, day, 2020, 8, 22)
+            console.log(total_day);
+  					let start_day = (is_big)? (((total_day % 7) === 0)? 7 : total_day % 7) : 7 - total_day % 7;
+            console.log(start_day);
+  					return start_day;
+  				}
+  				function setDefault(){
+  					$("button.day-button").removeClass().addClass("btn btn-primary w-100 btn-lg day-button").removeAttr("disabled");
+  				}
+          function setToday(){
+            let today = Date();
+            today = today.split(" ");
+            global_month = getMonthNumber(today[1].toLowerCase());
+            global_day = parseInt(today[2]);
+            global_year = parseInt(today[3]);
+            let start_day = setDate(global_month, global_day, global_year);
+            start_day = start_day - 1 + global_day;
+            let buttons = $("button.day-button");
+            $(buttons[start_day - 1]).removeClass("btn-primary");
+            $(buttons[start_day - 1]).addClass("btn-danger");
+            $("#select_year").val(global_year);
+            $("#select_month").val(global_month);
+            $("#display").text("Today is " + getDay(start_day % 7) + ", " + getMonthName(global_month) + " " + global_day + "," + global_year);
+            $("#today").addClass("disabled");
+          }
+          function setMonthOrYear(){
+            let year = parseInt($("#select_year")[0].value);
+            let month = parseInt($("#select_month")[0].value);
+            console.log(year, month);
+            if(year === global_year && month === global_month){
+              setToday();
+            }else{
+              setDate(month, 1, year);
+            }
+          }
+          function goToToday(){
+            setToday();
+          }
+  				function setDate(month, day, year){
+            setDefault();
+            if(year === 2469 && month === 12)
+              $("#next").attr("disabled", true);
+            else
+              $("#next").attr("disabled", false);
+            if(year === 1970 && month === 1)
+              $("#previous").attr("disabled", true);
+            else
+              $("#previous").attr("disabled", false);
+  					let start_day = calculateDetail(month, 1, year);
+  					let buttons = $("button.day-button");
+  					let j = 0;
+  					let last_day = getMonthSize(month, year);
+  					for(let i = start_day - 1; i < start_day + last_day - 1; i++){
+  						buttons[i].innerHTML = "<strong>" + (j + 1) + "</strong>";
+  						j++;
+  					}
+  					j = getMonthSize(month - 1, year);
+  					for(let i = start_day - 1; i > 0; i--){
+  						buttons[i - 1].innerHTML = "<strong>" + j + "</strong>";
+  						$(buttons[i - 1]).removeClass("btn-primary");
+              $(buttons[i - 1]).addClass("btn-secondary");
+  						$(buttons[i - 1]).addClass("disabled");
+              $(buttons[i - 1]).attr("disabled", true);
+  						j--;
+  					}
+  					j = 0;
+  					for(let i = start_day + last_day - 1; i < 42; i++){
+  						buttons[i].innerHTML = "<strong>" + (j + 1) +"</strong>";
+  						$(buttons[i]).removeClass("btn-primary");
+  						$(buttons[i]).addClass("btn-secondary");
+              $(buttons[i]).attr("disabled", true);
+  						j++;
+  					}
+            $("#today").removeClass("disabled");
+            return start_day;
+  				}
+
+  				let tbody = $("tbody");
+  				let tr = document.createElement("tr");
+  				let td = document.createElement("td");
+  				let button = $("<button></button>");
+  				button.addClass("btn btn-primary w-100 btn-lg day-button");
+  				let button_clone = button.clone();
+  				let tr_clone = tr.cloneNode();
+  				let td_clone = td.cloneNode();
+  				let option = document.createElement("option");
+  				let option_clone = option.cloneNode();
+  				for(let i = 0; i < 42; i++){
+  					td_clone.setAttribute("id", "td" + i);
+  					button_clone.html("<strong>" + ( i + 1 ) + "</strong>");
+  					td_clone.append(button_clone[0]);
+  					tr_clone.append(td_clone);
+  					td_clone = td.cloneNode();
+  					button_clone = button.clone();
+  					if(i !== 0 && (i + 1) % 7 === 0){
+  						tbody.append(tr_clone);
+  						tr_clone = tr.cloneNode();
+  					}
+  				}
+  				$("#select_month").empty();
+  				$("#select_year").empty();
+          $("#select_month").click(function(){
+              setMonthOrYear();
+            });
+          $("#select_year").click(function(){
+              setMonthOrYear();
+            });
+  				for(let i = 0; i < 12; i++){
+  					option_clone.innerHTML = i + 1;
+            option_clone.setAttribute("value", i + 1);
+  					$("#select_month")[0].append(option_clone);
+  					option_clone = option.cloneNode();
+  				}
+  				for(let i = 0; i < 500; i++){
+  					option_clone.innerHTML = i + 1970;
+  					option_clone.setAttribute("value", i + 1970);
+  					$("#select_year")[0].append(option_clone);
+  					option_clone = option.cloneNode();
+  				}
+          setToday();
+          $("button.day-button").click(function(e){
+            let month = $("#select_month")[0].value;
+            if(month < 10)
+              month = "0" + month;
+            alert($("#select_year")[0].value + "-" + month + "-" + e.target.textContent);
+          });
+  			});
+  		</script>
+	</head>
+	<body>
+		<div class="container pt-3">
+			<div class="d-flex justify-content-center">
+				<div class="input-group w-50">
+					<button class="btn btn-primary" id="previous"><-previous</button>
+					<select class="form-control" id="select_month">
+					</select>
+					<select class="form-control" id="select_year">
+					</select>
+					<button class="btn btn-primary" id="next">next-></button>
+				</div>
+			</div>
+			<div class="d-flex justify-content-center">
+					<h3 class="w-30" id="display">Saturdy, August 22, 2020 </h3>
+          <button class="btn btn-success btn-sm m-2 ml-3" id="today">go to today</button>
+			</div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="text-danger" style="text-align:center; width:13%;">Sunday</th>
+						<th style="text-align:center; width:13%;">Monday</th>
+						<th style="text-align:center; width:13%;">Tuesday</th>
+						<th style="text-align:center; width:13%;">Wednesday</th>
+						<th style="text-align:center; width:13%;">Thursday</th>
+						<th style="text-align:center; width:13%;">Friday</th>
+						<th style="text-align:center; width:13%;">Saturday</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>
