@@ -11,24 +11,28 @@
           let global_year = 0;
           $("#today").click(goToToday);
           $("#previous").click(function(){
-            let month = parseInt($("#select_month")[0].value)
+			let select_month = $("#select_month");
+			let select_year = $("#select_year");
+            let month = parseInt(select_month[0].value)
             if(month > 1)
-              $("#select_month").val(month - 1);
+              select_month.val(month - 1);
             else{
-              $("#select_month").val(12);
-              $("#select_year").val(parseInt($("#select_year")[0].value) - 1);
+              select_month.val(12);
+              select_year.val(parseInt(select_year[0].value) - 1);
             }
-            setDate(parseInt($("#select_month").val()), 1, parseInt($("#select_year").val()));
+            setMonthOrYear();
           });
           $("#next").click(function(){
-            let month = parseInt($("#select_month")[0].value)
+			let select_month = $("#select_month");
+			let select_year = $("#select_year");
+            let month = parseInt(select_month[0].value)
             if(month < 12)
-              $("#select_month").val(month + 1);
+              select_month.val(month + 1);
             else{
-              $("#select_month").val(1);
-              $("#select_year").val(parseInt($("#select_year")[0].value) + 1);
+              select_month.val(1);
+              select_year.val(parseInt(select_year[0].value) + 1);
             }
-            setDate(parseInt($("#select_month").val()), 1, parseInt($("#select_year").val()));
+            setMonthOrYear();
           });
   				function isLeapYear(year){
   					if(year % 4 === 0)
