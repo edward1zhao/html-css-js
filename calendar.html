@@ -103,15 +103,15 @@
   						total_day += (isLeapYear(i))? 366 : 365;
   					}
   					if(start_year === end_year){
-              if(start_month == end_month)
+              			if(start_month == end_month)
   						  total_day += end_day - start_day;
-              else{
-                total_day -= start_day;
-                for(let i = start_month; i < end_month; i++){
-                  total_day += getMonthSize(i, start_year);
-                }
-                total_day += end_day
-              }
+              			else{
+                			total_day -= start_day;
+                			for(let i = start_month; i < end_month; i++){
+                  				total_day += getMonthSize(i, start_year);
+                			}
+               				total_day += end_day
+              			}
   					}
   					else{
   						for(let i = start_month + 1; i <= 12; i++){
@@ -147,9 +147,7 @@
   					let total_day = 0;
   					let is_big = isBig(month, day, year);
   					total_day = (is_big)? countDays(2020, 8, 22, year, month, day) : countDays(year, month, day, 2020, 8, 22)
-            console.log(total_day);
   					let start_day = (is_big)? (((total_day % 7) === 0)? 7 : total_day % 7) : 7 - total_day % 7;
-            console.log(start_day);
   					return start_day;
   				}
   				function setDefault(){
@@ -168,7 +166,7 @@
             $(buttons[start_day - 1]).addClass("btn-danger");
             $("#select_year").val(global_year);
             $("#select_month").val(global_month);
-            $("#display").text("Today is " + getDay(start_day % 7) + ", " + getMonthName(global_month) + " " + global_day + "," + global_year);
+            $("#display").text("Today is " + getDay((start_day % 7 === 0)? 7 : start_day % 7) + ", " + getMonthName(global_month) + " " + global_day + "," + global_year);
             $("#today").addClass("disabled");
           }
           function setMonthOrYear(){
@@ -220,6 +218,7 @@
   						j++;
   					}
             $("#today").removeClass("disabled");
+			$("#start_day").empty().text(start_day);
             return start_day;
   				}
 
@@ -267,10 +266,20 @@
   				}
           setToday();
           $("button.day-button").click(function(e){
-            let month = $("#select_month")[0].value;
+            let month = parseInt($("#select_month")[0].value);
+			let day = parseInt(e.target.textContent);
+			let start_day = parseInt($("#start_day").text());
+			$("#day_letter").empty().text(
+				getDay(
+					((start_day + day - 1) % 7 === 0)? 7: (start_day + day - 1) % 7
+					)
+				+ "," + getMonthName(month) + " " + day + "," + $("#select_year")[0].value);
             if(month < 10)
               month = "0" + month;
-            alert($("#select_year")[0].value + "-" + month + "-" + e.target.textContent);
+			if(day < 10)
+				day = "0" + day;
+			$("#day_number").text($("#select_year")[0].value + "-" + month + "-" + day);
+			$("#btn_modal").modal();
           });
   			});
   		</script>
@@ -306,6 +315,26 @@
 				<tbody>
 				</tbody>
 			</table>
+			<div class="modal fade" id="btn_modal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="day_letter"></h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button> 
+						</div>
+
+						<div class="modal-body">
+							<h5 id="day_number"></h5>
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+						</div>
+
+						<div style="display:none;" id="start_day"></div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>
