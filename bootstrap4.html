@@ -12,8 +12,11 @@
   		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <style>
-             @media (max-width: 576px) {
+             @media (max-width: 740px) {
                 #logo{
+                    display:none;
+                }
+                .only-big{
                     display:none;
                 }
             }
@@ -21,7 +24,7 @@
     </head>
     <body>
         <div class="sticky-top">
-            <div class="navbar navbar-dark bg-dark shadow-sm">
+            <div class="navbar navbar-dark bg-secondarys shadow-sm">
                 <div class="container d-flex justify-content-between">
                     <a href="#" class="navbar-brand d-flex">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="lime">
@@ -134,6 +137,63 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="container">
+            <div class="row row-cols-md-4 row-cols-sm-2 flex-wrap">
+                <div class="col">
+                    <div class="alert alert-success alert-dismissible fade show">
+                        <h5 class="alert-heading">Alert<span class="badge badge-light badge-pill">1</span></h5>
+                        <p>This alert always be available on any device.</p>
+                        <button class="close" data-dismiss="alert">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col only-big">
+                    <div class="alert alert-warning alert-dismissible fade show">
+                        <h5 class="alert-heading">Alert<span class="badge badge-light badge-pill">2</span></h5>
+                        <p>This alert will be disappeared on small device.</p>
+                        <button class="close" data-dismiss="alert">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                </div> 
+                <div class="col only-big">
+                    <div class="alert alert-warning alert-dismissible fade show">
+                        <h5 class="alert-heading">Alert<span class="badge badge-light badge-pill">3</span></h5>
+                        <p>This alert will be disappeared on small device.</p>
+                        <button class="close" data-dismiss="alert">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="alert alert-success alert-dismissible fade show">
+                        <h5 class="alert-heading">Alert<span class="badge badge-light badge-pill">4</span></h5>
+                        <p>This alert always be available on any device.</p>
+                        <button class="close" data-dismiss="alert">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Library</a></li>
+                        <li class="breadcrumb-item"><a href="#">bookshop</a></li>
+                        <li class="breadcrumb-item active">gallery</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="row">
+
+            </div>
+        </div>
+        <div class="bg-info clearfix">
+            <button type="button" class="btn btn-secondary float-left">Example Button floated left</button>
+            <button type="button" class="btn btn-secondary float-right">Example Button floated right</button>
         </div>
         <blockquote class="blockquote text-center bg-dark text-white">
             <p class="mb-0">
