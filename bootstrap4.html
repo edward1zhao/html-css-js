@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="bootstrap4" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1 minimum-scale=1">
         <meta name="description" content="Free bootstrap example">
         <meta name="author" content="Edward Zhao">
         <title>Bootstarp 4 · All in one html</title>
@@ -10,51 +10,78 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!-- <script src="jquery.min.js"></script> -->
   		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <style>
+             @media (max-width: 576px) {
+                #logo{
+                    display:none;
+                }
+            }
+        </style>
     </head>
     <body>
-        <div class="navbar navbar-dark bg-success shadow-lg">
+        <div class="sticky-top">
+            <div class="navbar navbar-dark bg-dark shadow-sm">
+                <div class="container d-flex justify-content-between">
+                    <a href="#" class="navbar-brand d-flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="lime">
+                            <polygon points="2, 5, 4, 10, 6, 20, 8, 5, 10, 20, 12, 10, 14, 5, 16, 15, 18, 10, 20, 5"></polygon>
+                        </svg>
+                        <strong class="px-1">My Brand</strong>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#toggle1">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>  
+                </div>                  
+            </div>
+            <div class="collapse bg-dark" id="toggle1">
+                <div class="container pb-1">
+                    <div class="row">
+                        <div class="col-xl-7 col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                            <h4 class="text-white">About</h4>
+                            <p class="text-muted">This page contains lots of Bootstrap components
+                                and it helps you make a fully responsive web page.<br>
+                                Without traversing on several example files, you can get enough information about 
+                                bootstrap you need to know from this only one html page.
+                            </p>
+                        </div>
+                        <div class="col-xl-2 offset-xl-2 col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <h4 class="text-white">Some link</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="text-white">First</a></li>
+                                <li><a href="#" class="text-white">Second</a></li>
+                                <li><a href="#" class="text-white">Third</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navbar navbar-dark bg-success shadow-lg" id="logo">
             <div class="container d-flex">
                 <a href="#" class="navbar-brand"><h4>Logo</h4></a>
+                <div class="dropdown">
+                    <button class="dropdown-toggle btn btn-secondary" id="dropdown1" data-toggle="dropdown" aria-haspopup="true">Dropdown</button>
+                    <div class="dropdown-menu" aria-labelledby="#dropdown1">
+                        <a class="dropdown-item" href="#">one</a>
+                        <a class="dropdown-item" href="#">two</a>
+                        <a class="dropdown-item" href="#">three</a>
+                        <a class="dropdown-item" href="#">four</a>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-secondary">Splited Dropdown</button>
+                    <button class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">Gold</a>
+                        <a href="#" class="dropdown-item">Silber</a>
+                        <a href="#" class="dropdown-item">Bronze</a>
+                    </div>
+                </div>
                 <form class="form-inline">
                     <input class="custom-input">
                     <button class="btn btn-outline-danger text-white border-0">Search</button>
                 </form>
-            </div>
-        </div>
-        <div class="navbar navbar-dark bg-dark shadow-sm">
-            <div class="container d-flex justify-content-between">
-                <a href="#" class="navbar-brand d-flex">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="lime">
-                        <polygon points="2, 5, 4, 10, 6, 20, 8, 5, 10, 20, 12, 10, 14, 5, 16, 15, 18, 10, 20, 5"></polygon>
-                    </svg>
-                    <strong class="px-1">My Brand</strong>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#toggle1">
-                    <span class="navbar-toggler-icon"></span>
-                </button>  
-            </div>                  
-        </div>
-        <div class="collapse bg-dark" id="toggle1">
-            <div class="container pb-1">
-                <div class="row">
-                    <div class="col-xl-7 col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                        <h4 class="text-white">About</h4>
-                        <p class="text-muted">This page contains lots of Bootstrap components
-                            and it helps you make a fully responsive web page.<br>
-                            Without traversing on several example files, you can get enough information about 
-                            bootstrap you need to know from this only one html page.
-                        </p>
-                    </div>
-                    <div class="col-xl-2 offset-xl-2 col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <h4 class="text-white">Some link</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="text-white">First</a></li>
-                            <li><a href="#" class="text-white">Second</a></li>
-                            <li><a href="#" class="text-white">Third</a></li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="jumbotron jumbotron-fluid">
@@ -66,8 +93,8 @@
                         <div class="btn btn-success">btn-success</div>
                     </div>
                 </div>
-                <div class="container w-auto">
-                    <div class="row row-cols-md-4 row-cols-sm-2 row-cols-xl-1">
+                <div class="container w-auto h-auto">
+                    <div class="row row-cols-md-4 row-cols-sm-2 row-cols-xs-1">
                         <div class="col">
                             <div class="card">
                                 <h4 class="card-header bg-success text-white">Text1</h4>
@@ -108,5 +135,12 @@
                 </div>
             </div>
         </div>
+        <blockquote class="blockquote text-center bg-dark text-white">
+            <p class="mb-0">
+                This file may be structured so roughly.<br>
+                Despite of the mess, you can get information a bit more quickly.
+            </p>
+            <footer class="blockquote-footer">Edward Zhao</footer>
+        </blockquote>
     </body>
 </html>
