@@ -15,10 +15,10 @@
         <style>
              @media (max-width: 740px) {
                 #logo{
-                    display:none;
+                    visibility:hidden;
                 }
                 .only-big{
-                    display:none;
+                    visibility:hidden;
                 }
             }
             :root {
@@ -27,202 +27,218 @@
         </style>
         <script>
             $(document).ready(function(){
-                $('#alert1').show();
+                $('#alert1').css("visibility", "visible");
                 $('#alert1')[0].addEventListener('animationend', () => {
-                    $('#alert2').show().addClass('animate__animated animate__rotateInDownRight');
+                    $('#alert2').css("visibility", "visible").addClass('animate__animated animate__rotateInDownRight');
                 });
                 $('#alert2')[0].addEventListener('animationend', () => {
-                    $('#alert3').show().addClass('animate__animated animate__rotateIn');
+                    $('#alert3').css("visibility", "visible").addClass('animate__animated animate__rotateIn');
                 });
                 $('#alert3')[0].addEventListener('animationend', () => {
-                    $('#alert4').show().addClass('animate__animated animate__rollIn');
+                    $('#alert4').css("visibility", "visible").addClass('animate__animated animate__rollIn');
                 });
                 $('#alert4')[0].addEventListener('animationend', () => {
-                    $('#breadC').show().addClass('animate__animated animate__flip animate_slower');
+                    $('#breadC').css("visibility", "visible").addClass('animate__animated animate__flip animate_slower');
+                });
+                $('#breadC')[0].addEventListener('animationend', () => {
+                    $('#reset_btn').css("visibility", "visible").addClass('animate__animated animate__rubberBand animate_slow');
+                });
+                $('#reset_btn')[0].addEventListener('animationend', () => {
+                    $('.clearfix').css("visibility", "visible").addClass('animate__animated animate__rubberBand animate_slow');
+                });
+                $('.clearfix')[0].addEventListener('animationend', () => {
+                    $('blockquote').css("visibility", "visible").addClass('animate__animated animate__flip animate_slow');
                 });
                 $('#alert1').addClass("animate__animated animate__rotateInDownLeft");
+                $('#reset_btn').click(function(){
+                    $('#main').css("overflow", "hidden");
+                    $('.blockquote').removeClass('bg-dark');
+                    $('#main *').addClass("animate__animated animate__rotateOut");
+                });
             });
         </script>
     </head>
     <body>
-        <div class="sticky-top">
-            <div class="navbar navbar-dark bg-secondary shadow-sm">
-                <div class="container d-flex justify-content-between">
-                    <a href="#" class="navbar-brand d-flex">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="lime">
-                            <polygon points="2, 5, 4, 10, 6, 20, 8, 5, 10, 20, 12, 10, 14, 5, 16, 15, 18, 10, 20, 5"></polygon>
-                        </svg>
-                        <strong class="px-1">My Brand</strong>
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#toggle1">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>  
-                </div>                  
-            </div>
-            <div class="collapse bg-dark" id="toggle1">
-                <div class="container pb-1">
-                    <div class="row">
-                        <div class="col-xl-7 col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                            <h4 class="text-white">About</h4>
-                            <p class="text-muted">This page contains lots of Bootstrap components
-                                and it helps you make a fully responsive web page.<br>
-                                Without traversing on several example files, you can get enough information about 
-                                bootstrap you need to know from this only one html page.
-                            </p>
-                        </div>
-                        <div class="col-xl-2 offset-xl-2 col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                            <h4 class="text-white">Some link</h4>
-                            <ul class="list-unstyled">
-                                <li><a href="#" class="text-white">First</a></li>
-                                <li><a href="#" class="text-white">Second</a></li>
-                                <li><a href="#" class="text-white">Third</a></li>
-                            </ul>
-                        </div>
-                    </div>
+        <div id="main">
+            <div class="sticky-top">
+                <div class="navbar navbar-dark bg-secondary shadow-sm">
+                    <div class="container d-flex justify-content-between">
+                        <a href="#" class="navbar-brand d-flex">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="lime">
+                                <polygon points="2, 5, 4, 10, 6, 20, 8, 5, 10, 20, 12, 10, 14, 5, 16, 15, 18, 10, 20, 5"></polygon>
+                            </svg>
+                            <strong class="px-1">My Brand</strong>
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#toggle1">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>  
+                    </div>                  
                 </div>
-            </div>
-        </div>
-        <div class="navbar navbar-dark bg-primary shadow-lg" id="logo">
-            <div class="container d-flex">
-                <a href="#" class="navbar-brand"><h4>Logo</h4></a>
-                <div class="dropdown">
-                    <button class="dropdown-toggle btn btn-secondary" id="dropdown1" data-toggle="dropdown" aria-haspopup="true">Dropdown</button>
-                    <div class="dropdown-menu" aria-labelledby="#dropdown1">
-                        <a class="dropdown-item" href="#">one</a>
-                        <a class="dropdown-item" href="#">two</a>
-                        <a class="dropdown-item" href="#">three</a>
-                        <a class="dropdown-item" href="#">four</a>
-                    </div>
-                </div>
-                <div class="btn-group">
-                    <button class="btn btn-secondary">Splited Dropdown</button>
-                    <button class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
-                    <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item">Gold</a>
-                        <a href="#" class="dropdown-item">Silber</a>
-                        <a href="#" class="dropdown-item">Bronze</a>
-                    </div>
-                </div>
-                <form class="form-inline">
-                    <input class="custom-input">
-                    <button class="btn btn-outline-danger text-white border-0">Search</button>
-                </form>
-            </div>
-        </div>
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container d-flex">
-                <div class="container w-auto">
-                    <div class="btn-group-vertical">
-                        <div class="btn btn-secondary">btn-secondary</div>
-                        <div class="btn btn-secondary">btn-secondary</div>
-                        <div class="btn btn-secondary">btn-secondary</div>
-                    </div>
-                </div>
-                <div class="container w-auto h-auto">
-                    <div class="row row-cols-md-4 row-cols-sm-2 row-cols-xs-1">
-                        <div class="col animate__animated animate__bounce">
-                            <div class="card">
-                                <h4 class="card-header bg-primary text-white">Text1</h4>
-                                <div class="card-body">
-                                    <p class="text-muted card-text">This is a muted text</p>
-                                    <a href="#" class="btn btn-primary">Go</a>
-                                </div>
+                <div class="collapse bg-dark" id="toggle1">
+                    <div class="container pb-1">
+                        <div class="row">
+                            <div class="col-xl-7 col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                <h4 class="text-white">About</h4>
+                                <p class="text-muted">This page contains lots of Bootstrap components
+                                    and it helps you make a fully responsive web page.<br>
+                                    Without traversing on several example files, you can get enough information about 
+                                    bootstrap you need to know from this only one html page.
+                                </p>
                             </div>
-                        </div>
-                        <div class="col animate__animated animate__swing animate__repeat-3">
-                            <div class="card">
-                                <h4 class="card-header bg-primary text-white">Text2</h4>
-                                <div class="card-body">
-                                    <p class="text-warning">This is a warning text</p>
-                                    <a href="#" class="btn btn-primary">Go</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col animate__animated animate__tada">
-                            <div class="card">
-                                <h4 class="card-header bg-primary text-white">Text3</h4>
-                                <div class="card-body">
-                                    <p class="text-success">This is a success text</p>
-                                    <a href="#" class="btn btn-primary">Go</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card animate__animated animate__wobble">
-                                <h4 class="card-header bg-primary text-white">Text4</h4>
-                                <div class="card-body">
-                                    <p class="text-primary">This is a primary text</p>
-                                    <a href="#" class="btn btn-primary">Go</a>
-                                </div>
+                            <div class="col-xl-2 offset-xl-2 col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                <h4 class="text-white">Some link</h4>
+                                <ul class="list-unstyled">
+                                    <li><a href="#" class="text-white">First</a></li>
+                                    <li><a href="#" class="text-white">Second</a></li>
+                                    <li><a href="#" class="text-white">Third</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container">
-            <div class="row row-cols-md-4 row-cols-sm-2 flex-wrap">
-                <div class="col" id="alert1" style="display:none;">
-                    <div class="alert alert-success alert-dismissible fade show">
-                        <h5 class="alert-heading">Alert<span class="badge badge-light badge-pill">1</span></h5>
-                        <p>This alert always be available on any device.</p>
-                        <button class="close" data-dismiss="alert">
-                            <span>&times;</span>
-                        </button>
+            <div class="navbar navbar-dark bg-primary shadow-lg" id="logo">
+                <div class="container d-flex">
+                    <a href="#" class="navbar-brand"><h4>Logo</h4></a>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle btn btn-secondary" id="dropdown1" data-toggle="dropdown" aria-haspopup="true">Dropdown</button>
+                        <div class="dropdown-menu" aria-labelledby="#dropdown1">
+                            <a class="dropdown-item" href="#">one</a>
+                            <a class="dropdown-item" href="#">two</a>
+                            <a class="dropdown-item" href="#">three</a>
+                            <a class="dropdown-item" href="#">four</a>
+                        </div>
                     </div>
+                    <div class="btn-group">
+                        <button class="btn btn-secondary">Splited Dropdown</button>
+                        <button class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
+                        <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item">Gold</a>
+                            <a href="#" class="dropdown-item">Silber</a>
+                            <a href="#" class="dropdown-item">Bronze</a>
+                        </div>
+                    </div>
+                    <form class="form-inline">
+                        <input class="custom-input">
+                        <button class="btn btn-outline-danger text-white border-0">Search</button>
+                    </form>
                 </div>
-                <div class="col only-big" id="alert2" style="display:none;">
-                    <div class="alert alert-warning alert-dismissible fade show">
-                        <h5 class="alert-heading">Alert<span class="badge badge-light badge-pill">2</span></h5>
-                        <p>This alert will be disappeared on small device.</p>
-                        <button class="close" data-dismiss="alert">
-                            <span>&times;</span>
-                        </button>
+            </div>
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container d-flex">
+                    <div class="container w-auto">
+                        <div class="btn-group-vertical">
+                            <div class="btn btn-secondary">btn-secondary</div>
+                            <div class="btn btn-secondary">btn-secondary</div>
+                            <div class="btn btn-secondary">btn-secondary</div>
+                        </div>
                     </div>
-                </div> 
-                <div class="col only-big" id="alert3" style="display:none;">
-                    <div class="alert alert-warning alert-dismissible fade show">
-                        <h5 class="alert-heading">Alert<span class="badge badge-light badge-pill">3</span></h5>
-                        <p>This alert will be disappeared on small device.</p>
-                        <button class="close" data-dismiss="alert">
-                            <span>&times;</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="col" id="alert4" style="display:none;">
-                    <div class="alert alert-success alert-dismissible fade show">
-                        <h5 class="alert-heading">Alert<span class="badge badge-light badge-pill">4</span></h5>
-                        <p>This alert always be available on any device.</p>
-                        <button class="close" data-dismiss="alert">
-                            <span>&times;</span>
-                        </button>
+                    <div class="container w-auto h-auto">
+                        <div class="row row-cols-md-4 row-cols-sm-2 row-cols-xs-1">
+                            <div class="col animate__animated animate__bounce">
+                                <div class="card">
+                                    <h4 class="card-header bg-primary text-white">Text1</h4>
+                                    <div class="card-body">
+                                        <p class="text-muted card-text">This is a muted text</p>
+                                        <a href="#" class="btn btn-primary">Go</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col animate__animated animate__swing animate__repeat-3">
+                                <div class="card">
+                                    <h4 class="card-header bg-primary text-white">Text2</h4>
+                                    <div class="card-body">
+                                        <p class="text-warning">This is a warning text</p>
+                                        <a href="#" class="btn btn-primary">Go</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col animate__animated animate__tada">
+                                <div class="card">
+                                    <h4 class="card-header bg-primary text-white">Text3</h4>
+                                    <div class="card-body">
+                                        <p class="text-success">This is a success text</p>
+                                        <a href="#" class="btn btn-primary">Go</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card animate__animated animate__wobble">
+                                    <h4 class="card-header bg-primary text-white">Text4</h4>
+                                    <div class="card-body">
+                                        <p class="text-primary">This is a primary text</p>
+                                        <a href="#" class="btn btn-primary">Go</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row" id="breadC" style="display:none;">
-                <nav>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Library</a></li>
-                        <li class="breadcrumb-item"><a href="#">bookshop</a></li>
-                        <li class="breadcrumb-item active">gallery</li>
-                    </ol>
-                </nav>
+            <div class="container">
+                <div class="row row-cols-md-4 row-cols-sm-2 flex-wrap">
+                    <div class="col" id="alert1" style="visibility:hidden;">
+                        <div class="alert alert-success alert-dismissible fade show">
+                            <h5 class="alert-heading">Alert<span class="badge badge-light badge-pill">1</span></h5>
+                            <p>This alert always be available on any device.</p>
+                            <button class="close" data-dismiss="alert">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col only-big" id="alert2" style="visibility:hidden;">
+                        <div class="alert alert-warning alert-dismissible fade show">
+                            <h5 class="alert-heading">Alert<span class="badge badge-light badge-pill">2</span></h5>
+                            <p>This alert will be disappeared on small device.</p>
+                            <button class="close" data-dismiss="alert">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                    </div> 
+                    <div class="col only-big" id="alert3" style="visibility:hidden;">
+                        <div class="alert alert-warning alert-dismissible fade show">
+                            <h5 class="alert-heading">Alert<span class="badge badge-light badge-pill">3</span></h5>
+                            <p>This alert will be disappeared on small device.</p>
+                            <button class="close" data-dismiss="alert">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col" id="alert4" style="visibility:hidden;">
+                        <div class="alert alert-success alert-dismissible fade show">
+                            <h5 class="alert-heading">Alert<span class="badge badge-light badge-pill">4</span></h5>
+                            <p>This alert always be available on any device.</p>
+                            <button class="close" data-dismiss="alert">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="breadC" style="visibility:hidden;">
+                    <nav>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Library</a></li>
+                            <li class="breadcrumb-item"><a href="#">bookshop</a></li>
+                            <li class="breadcrumb-item active">gallery</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row mb-2 justify-content-center">
+                    <button class="btn btn-primary" id="reset_btn" style="visibility:hidden;">hide them!</button>
+                </div>
             </div>
-            <div class="row">
-
+            <div class="clearfix" style="visibility:hidden;">
+                <button type="button" class="btn btn-secondary float-left">Example Button floated left</button>
+                <button type="button" class="btn btn-secondary float-right">Example Button floated right</button>
             </div>
+            <blockquote class="blockquote text-center bg-dark text-white" style="visibility:hidden;">
+                <p class="mb-0">
+                    This file may be structured so roughly.<br>
+                    Despite of the mess, you can get information a bit more quickly.
+                </p>
+                <footer class="blockquote-footer">Edward Zhao</footer>
+            </blockquote>
         </div>
-        <div class="bg-info clearfix">
-            <button type="button" class="btn btn-secondary float-left">Example Button floated left</button>
-            <button type="button" class="btn btn-secondary float-right">Example Button floated right</button>
-        </div>
-        <blockquote class="blockquote text-center bg-dark text-white">
-            <p class="mb-0">
-                This file may be structured so roughly.<br>
-                Despite of the mess, you can get information a bit more quickly.
-            </p>
-            <footer class="blockquote-footer">Edward Zhao</footer>
-        </blockquote>
     </body>
 </html>
