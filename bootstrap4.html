@@ -7,6 +7,7 @@
         <meta name="author" content="Edward Zhao">
         <title>Bootstarp 4 · All in one html</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!-- <script src="jquery.min.js"></script> -->
   		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -20,11 +21,15 @@
                     display:none;
                 }
             }
+            :root {
+                --animate-duration: 1.5s;
+            }
         </style>
+
     </head>
     <body>
         <div class="sticky-top">
-            <div class="navbar navbar-dark bg-secondarys shadow-sm">
+            <div class="navbar navbar-dark bg-secondary shadow-sm">
                 <div class="container d-flex justify-content-between">
                     <a href="#" class="navbar-brand d-flex">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="lime">
@@ -60,7 +65,7 @@
                 </div>
             </div>
         </div>
-        <div class="navbar navbar-dark bg-success shadow-lg" id="logo">
+        <div class="navbar navbar-dark bg-primary shadow-lg" id="logo">
             <div class="container d-flex">
                 <a href="#" class="navbar-brand"><h4>Logo</h4></a>
                 <div class="dropdown">
@@ -91,23 +96,23 @@
             <div class="container d-flex">
                 <div class="container w-auto">
                     <div class="btn-group-vertical">
-                        <div class="btn btn-primary">btn-priamry</div>
-                        <div class="btn btn-danger">btn-danger</div>
-                        <div class="btn btn-success">btn-success</div>
+                        <div class="btn btn-secondary">btn-secondary</div>
+                        <div class="btn btn-secondary">btn-secondary</div>
+                        <div class="btn btn-secondary">btn-secondary</div>
                     </div>
                 </div>
                 <div class="container w-auto h-auto">
                     <div class="row row-cols-md-4 row-cols-sm-2 row-cols-xs-1">
-                        <div class="col">
+                        <div class="col animate__animated animate__bounce">
                             <div class="card">
-                                <h4 class="card-header bg-success text-white">Text1</h4>
+                                <h4 class="card-header bg-primary text-white">Text1</h4>
                                 <div class="card-body">
                                     <p class="text-muted card-text">This is a muted text</p>
                                     <a href="#" class="btn btn-primary">Go</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col animate__animated animate__swing animate__repeat-3">
                             <div class="card">
                                 <h4 class="card-header bg-primary text-white">Text2</h4>
                                 <div class="card-body">
@@ -116,9 +121,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col animate__animated animate__tada">
                             <div class="card">
-                                <h4 class="card-header bg-dark text-white">Text3</h4>
+                                <h4 class="card-header bg-primary text-white">Text3</h4>
                                 <div class="card-body">
                                     <p class="text-success">This is a success text</p>
                                     <a href="#" class="btn btn-primary">Go</a>
@@ -126,8 +131,8 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div class="card">
-                                <h4 class="card-header bg-danger text-white">Text4</h4>
+                            <div class="card animate__animated animate__wobble">
+                                <h4 class="card-header bg-primary text-white">Text4</h4>
                                 <div class="card-body">
                                     <p class="text-primary">This is a primary text</p>
                                     <a href="#" class="btn btn-primary">Go</a>
@@ -179,7 +184,7 @@
             </div>
             <div class="row">
                 <nav>
-                    <ol class="breadcrumb">
+                    <ol class="breadcrumb animate__animated animate__rotateInDownLeft">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Library</a></li>
                         <li class="breadcrumb-item"><a href="#">bookshop</a></li>
