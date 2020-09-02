@@ -22,10 +22,27 @@
                 }
             }
             :root {
-                --animate-duration: 1.5s;
+                --animate-duration: 0.8s;
             }
         </style>
-
+        <script>
+            $(document).ready(function(){
+                $('#alert1').show();
+                $('#alert1')[0].addEventListener('animationend', () => {
+                    $('#alert2').show().addClass('animate__animated animate__rotateInDownRight');
+                });
+                $('#alert2')[0].addEventListener('animationend', () => {
+                    $('#alert3').show().addClass('animate__animated animate__rotateIn');
+                });
+                $('#alert3')[0].addEventListener('animationend', () => {
+                    $('#alert4').show().addClass('animate__animated animate__rollIn');
+                });
+                $('#alert4')[0].addEventListener('animationend', () => {
+                    $('#breadC').show().addClass('animate__animated animate__flip animate_slower');
+                });
+                $('#alert1').addClass("animate__animated animate__rotateInDownLeft");
+            });
+        </script>
     </head>
     <body>
         <div class="sticky-top">
@@ -145,7 +162,7 @@
         </div>
         <div class="container">
             <div class="row row-cols-md-4 row-cols-sm-2 flex-wrap">
-                <div class="col">
+                <div class="col" id="alert1" style="display:none;">
                     <div class="alert alert-success alert-dismissible fade show">
                         <h5 class="alert-heading">Alert<span class="badge badge-light badge-pill">1</span></h5>
                         <p>This alert always be available on any device.</p>
@@ -154,7 +171,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="col only-big">
+                <div class="col only-big" id="alert2" style="display:none;">
                     <div class="alert alert-warning alert-dismissible fade show">
                         <h5 class="alert-heading">Alert<span class="badge badge-light badge-pill">2</span></h5>
                         <p>This alert will be disappeared on small device.</p>
@@ -163,7 +180,7 @@
                         </button>
                     </div>
                 </div> 
-                <div class="col only-big">
+                <div class="col only-big" id="alert3" style="display:none;">
                     <div class="alert alert-warning alert-dismissible fade show">
                         <h5 class="alert-heading">Alert<span class="badge badge-light badge-pill">3</span></h5>
                         <p>This alert will be disappeared on small device.</p>
@@ -172,7 +189,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col" id="alert4" style="display:none;">
                     <div class="alert alert-success alert-dismissible fade show">
                         <h5 class="alert-heading">Alert<span class="badge badge-light badge-pill">4</span></h5>
                         <p>This alert always be available on any device.</p>
@@ -182,9 +199,9 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="breadC" style="display:none;">
                 <nav>
-                    <ol class="breadcrumb animate__animated animate__rotateInDownLeft">
+                    <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Library</a></li>
                         <li class="breadcrumb-item"><a href="#">bookshop</a></li>
